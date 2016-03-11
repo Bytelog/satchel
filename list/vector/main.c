@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include "vec.h"
 
 void vec_init(vec *v)
@@ -9,12 +10,12 @@ void vec_init(vec *v)
     v->count = 0;
 }
 
-void * vec_get(vec *v, size_t n)
+int vec_get(vec *v, size_t n)
 {
     return v->array[n];
 }
 
-void vec_push(vec *v, void *e)
+void vec_push(vec *v, int e)
 {
     if (v->size == 0) {
         v->size = 1;
@@ -30,13 +31,27 @@ void vec_push(vec *v, void *e)
     v->count++;
 }
 
+void vec_free(vec *v)
+{
+    free(v->array);
+    v->array = NULL;
+    v->size = 0;
+    v->count = 0;
+}
+
 
 int main()
 {   
     vec v;
     vec_init(&v);
-    vec_push(&v, (void *) 6);
-    vec_push(&v, (void *) 20);
-    vec_push(&v, (void *) 120);
-    printf("Vector Entry: %i; Size: %i\n", (int) vec_get(&v, 0), (int) v.size);
+
+    for(int i=0; i < 100; ++i) {
+        vec_push(&v, i);
+    }
+
+    for(size_t i=0; i < 100; ++i) {
+        printf("%i\n", vec_get(&v, i));
+    }
+
+    vec_free(&v);
 }

@@ -5,20 +5,20 @@ typedef struct vec_t vec;
 
 struct vec_iterator_t
 {
-    void **array;
+    int *array;
 };
 
 struct vec_t
 {
-    void **array;
+    int *array;
     size_t size;
     size_t count;
 };
 
-void * vec_get(vec *v, size_t n);
+int vec_get(vec *v, size_t n);
 
 void vec_init(vec *v);
-void vec_push(vec *v, void *e);
+void vec_push(vec *v, int e);
 void vec_pop(vec *v);
 void vec_insert(vec *v, vec_iterator *it, const void *e);
 void vec_erase(vec *v, vec_iterator *it);
