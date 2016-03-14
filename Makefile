@@ -2,7 +2,6 @@ CC := clang
 CFLAGS := -std=c99 -Wpedantic -Weverything
 RELEASE := -O3 -Werror
 DEBUG := -g
-TARGET := target
 SOURCES := $(wildcard src/*.c)
 OBJECTS := $(SOURCES:%.c=%.o)
 OBJECTS := $(OBJECTS:src/%=target/%)
@@ -23,11 +22,11 @@ target/%.o: src/%.c
 
 init:
 	@echo Initializing...
-	@mkdir -p $(TARGET)
+	@mkdir -p target
 
 build: clean init $(OBJECTS)
 	@echo Building...
 
 clean:
 	@echo Cleaning...
-	@rm -rf $(TARGET)
+	@rm -rf target

@@ -28,5 +28,7 @@ int main(int argc, char **argv)
     for(int i=0; i < v.count; ++i) {
         assert(vec_get(&v, i) == i);
     }
+
+    vec_free(&v);
 }
 
