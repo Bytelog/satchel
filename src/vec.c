@@ -64,23 +64,3 @@ void vec_clear(vec *v)
     v->count = 0;
 }
 
-int main()
-{   
-    vec v;
-    vec_init(&v);
-
-    vec_push(&v, 5);
-    vec_push(&v, 15);
-    vec_insert(&v, 1, 10);
-    vec_push(&v, 20);
-    vec_insert(&v, 0, 0);
-    vec_erase(&v, 4);
-    vec_push(&v, 20);
-
-
-    for(size_t i=0; i < v.count; ++i) {
-        printf("%i\n", vec_get(&v, i));
-    }
-
-    vec_free(&v);
-}
