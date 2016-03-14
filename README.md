@@ -12,24 +12,39 @@ Here lies a collection of data structures which I have implemented for learning 
 * No care has been given to packing structs efficiently
 
 ## Building
-To generate the object files, just type `make`. The results will be stored in the `target/` directory. The only thing you should need is libc and a compiler supporting C99. If you want to use something other than clang, you may need to edit the first line of the makefile.
+To generate the object files, just type `make`. The results will be stored in the `target/` directory. The only thing you should need is libc and a compiler supporting C99. If you want to use something other than clang, you will need to edit the first line of the makefile.
 
 ## API
+Quick reference documentation on each data structure. Each function has an implicit reference to it's own structure which has been omitted. For example, vec\_clear() should really be vec\_clear(vec \*v).
+
+Furthormore, the \_init() and \_free() functions for each data type have been omitted from this reference.
 
 ### Vector
+Files: vec.h, vec.o
 ```
 vec:
     array: int *
     size: size_t
     count: size_t
 
-Function             Complexity      Allocation
-vec_get(pos)            O(1)            None
-vec_init()              O(1)            None
-vec_push()              O(1)            size
-vec_pop()               O(1)            None
-vec_insert(pos, val)    O(n)            size
-vec_erase(pos, val)     O(n)            None
-vec_clear()             O(1)            None
-vec_free()              O(1)            None
+Function
+    vec_get(pos) -> int
+    vec_push()
+    vec_pop()
+    vec_insert(pos, val)
+    vec_erase(pos, val)
+    vec_clear()
+```
+
+### Stack
+```
+stack:
+    array: int *
+    size: size_t
+    count: size_t
+
+Function
+    stack_top()
+    stack_push(val)
+    stack_pop()
 ```
