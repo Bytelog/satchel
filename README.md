@@ -8,7 +8,7 @@ Here lies a collection of data structures which I have implemented for learning 
 * There is no bounds checking. This may change, but I'm inclined to keep the implementation minimalistic
 * Code is reused where possible. For example: stack depends on vec.
 * Failures of I/O functions such as `malloc` are unhandled
-* `__builtin\_expect` is not used for optimization
+* `__builtin_expect` is not used for optimization
 * No care has been given to packing structs efficiently
 
 ## Building
@@ -20,7 +20,7 @@ Quick reference documentation on each data structure. Each function has an impli
 Furthormore, the \_init() and \_free() functions for each data type have been omitted from this reference.
 
 ### Vector
-Files: vec.h, vec.o
+Files: vec.h, vec.o, common.h
 ```
 vec:
     array: int *
@@ -37,6 +37,7 @@ Function
 ```
 
 ### Stack
+Files: stack.h, stack.o. vec.h, vec.o, common.h
 ```
 stack:
     array: int *
