@@ -45,7 +45,7 @@ stack:
     count: size_t
 
 Function
-    stack_top()
+    stack_top() -> int
     stack_push(val)
     stack_pop()
 ```
