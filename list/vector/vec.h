@@ -1,12 +1,14 @@
 #pragma once
 
-typedef struct vec_iterator_t vec_iterator;
-typedef struct vec_t vec;
+#include <stdint.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-struct vec_iterator_t
-{
-    int *array;
-};
+#define MIN(a,b) (((a)<(b))?(a):(b))
+#define MAX(a,b) (((a)>(b))?(a):(b))
+
+typedef struct vec_t vec;
 
 struct vec_t
 {
@@ -20,7 +22,7 @@ int vec_get(vec *v, size_t n);
 void vec_init(vec *v);
 void vec_push(vec *v, int e);
 void vec_pop(vec *v);
-void vec_insert(vec *v, vec_iterator *it, const void *e);
-void vec_erase(vec *v, vec_iterator *it);
+void vec_insert(vec *v, size_t pos, int e);
+void vec_erase(vec *v, size_t pos);
 void vec_clear(vec *v);
 void vec_free(vec *v);
