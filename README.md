@@ -2,6 +2,7 @@
 Here lies a collection of data structures which I have implemented for learning purposes. Although I strive for efficient and correct implementations, I do not recommend using them in code of any importance. Some details of implementation:
 
 * The APIs mostly try and mirror C++'s STL, including efficiency guarantees
+* Some implementations favor contiguous memory to make use of caching, at the cost of time complexity.
 * Each implementation supports only one type (usually int)
 * The data structures either utilize iterators or indices, but not both
 * Underlying memory is never zeroed, even when cleared
