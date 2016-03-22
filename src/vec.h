@@ -10,17 +10,17 @@ typedef struct vec_t vec;
 
 struct vec_t
 {
-    int *array;
+    void const **array;
     size_t size;
     size_t count;
 };
 
-int vec_get(vec *v, size_t n);
+void const *vec_get(vec *v, size_t n);
 
 void vec_init(vec *v);
-void vec_push(vec *v, int e);
+void vec_push(vec *v, void const *);
 void vec_pop(vec *v);
-void vec_insert(vec *v, size_t pos, int e);
+void vec_insert(vec *v, size_t pos, void const *);
 void vec_erase(vec *v, size_t pos);
 void vec_clear(vec *v);
 void vec_free(vec *v);

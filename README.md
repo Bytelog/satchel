@@ -1,14 +1,16 @@
 # Data Structures
-Here lies a collection of data structures which I have implemented for learning purposes. Although I strive for efficient and correct implementations, I do not recommend using them in code of any importance. Some details of implementation:
+Here lies a collection of data structures which I have implemented for learning purposes. Although I strive for efficient and correct implementations, I do not recommend using them in code of any importance. Instead, I refer you to [klib](https://github.com/attractivechaos/klib).
 
-* The APIs mostly try and mirror C++'s STL, including efficiency guarantees
-* Some implementations favor contiguous memory to make use of caching, at the cost of time complexity.
-* Each implementation supports only one type (usually int)
+## Methodology
+The containers mostly try and mirror C++'s STL, including efficiency guarantees. They are typed as (void \*) to allow for generic usage. This comes with a small performance penalty. This approach has been chosen because it yields the cleanest and most easily understood code.
+
+In some instances, time complexity has been sacrificed in favor of contiguous memory, to make use of caching. On most modern machines this should provide higher performance.
+
+Some other notes:
 * The data structures either utilize iterators or indices, but not both
 * Underlying memory is never zeroed, even when cleared
-* There is no bounds checking. This may change, but I'm inclined to keep the implementation minimalistic
-* Code is reused where possible. For example: stack depends on vec.
-* Failures of I/O functions such as `malloc` are unhandled
+* There is no bounds checking.
+* Failures of I/O functions such as `malloc` are unhandled (for now)
 * `__builtin_expect` is not used for optimization
 * No care has been given to packing structs efficiently
 
@@ -24,12 +26,12 @@ Furthormore, the \_init() and \_free() functions for each data type have been om
 Files: vec.h, vec.o, common.h
 ```
 vec:
-    array: int *
+    array: void **
     size: size_t
     count: size_t
 
 Function
-    vec_get(pos) -> int
+    vec_get(pos) -> val
     vec_push()
     vec_pop()
     vec_insert(pos, val)
@@ -41,12 +43,12 @@ Function
 Files: stack.h, stack.o. vec.h, vec.o, common.h
 ```
 stack:
-    array: int *
+    array: void **
     size: size_t
     count: size_t
 
 Function
-    stack_top() -> int
+    stack_top() -> val
     stack_push(val)
     stack_pop()
 ```

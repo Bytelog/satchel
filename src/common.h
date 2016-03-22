@@ -3,8 +3,8 @@
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
 
-
-size_t next_power_of_2(size_t n)
+static inline size_t
+next_power_of_2(size_t n)
 {
     n--;
     n |= n >> 1;
@@ -13,4 +13,5 @@ size_t next_power_of_2(size_t n)
     n |= n >> 8;
     n |= n >> 16;
     n++;
+    return n;
 }
