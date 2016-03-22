@@ -40,7 +40,7 @@ Function
 ```
 
 ### Stack
-Files: stack.h, stack.o. vec.h, vec.o, common.h
+Files: stack.h, common.h
 ```
 stack:
     array: void **
