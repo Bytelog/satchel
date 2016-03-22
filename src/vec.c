@@ -11,7 +11,7 @@ inline void const *vec_get(vec *v, size_t n) { return v->array[n]; }
 void vec_push(vec *v, void const *e) {
   if (v->size == 0) {
     v->size = 1;
-    v->array = malloc(sizeof(void *) * v->size);
+    v->array = malloc(sizeof(void *));
   }
 
   if (v->size == v->count) {
