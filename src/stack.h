@@ -1,12 +1,10 @@
 #pragma once
-#include "common.h"
 #include "vec.h"
 
 typedef struct vec_t stack;
 
-void const *stack_top(stack *s);
-
-void stack_init(stack *s);
-void stack_push(stack *s, void const *e);
-void stack_pop(stack *s);
-void stack_free(stack *s);
+inline void const *stack_top(stack *s) { return vec_get(s, s->count - 1); }
+inline void stack_init(stack *s) { vec_init(s); }
+inline void stack_push(stack *s, void const *e) { vec_push(s, e); }
+inline void stack_pop(stack *s) { vec_pop(s); }
+inline void stack_free(stack *s) { vec_free(s); }

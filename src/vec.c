@@ -6,7 +6,7 @@ void vec_init(vec *v) {
   v->count = 0;
 }
 
-void const *vec_get(vec *v, size_t n) { return v->array[n]; }
+inline void const *vec_get(vec *v, size_t n) { return v->array[n]; }
 
 void vec_push(vec *v, void const *e) {
   if (v->size == 0) {
@@ -30,7 +30,7 @@ void vec_free(vec *v) {
   v->count = 0;
 }
 
-void vec_pop(vec *v) { v->count = MAX(v->count - 1, 0); }
+inline void vec_pop(vec *v) { v->count = MAX(v->count - 1, 0); }
 
 void vec_insert(vec *v, size_t pos, void const *val) {
   if (v->size == v->count) {
@@ -50,4 +50,4 @@ void vec_erase(vec *v, size_t pos) {
           sizeof(void *) * (v->count - pos));
 }
 
-void vec_clear(vec *v) { v->count = 0; }
+inline void vec_clear(vec *v) { v->count = 0; }
