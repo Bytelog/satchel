@@ -1,18 +1,22 @@
 #include <assert.h>
+#include <stdint.h>
 #include "stack.h"
 
-int main(int argc, char **argv)
+#define FROM_INT void *)(intptr_t
+#define TO_INT int)(intptr_t const *
+
+int main()
 {
     stack s;
     stack_init(&s);
 
     for(int i=0; i < 100; ++i) {
-        stack_push(&s, i);
-        assert(stack_top(&s) == i);
+        stack_push(&s, (FROM_INT) i);
+        assert((TO_INT) stack_top(&s) == i);
     }
     
     for(int i=99; 0 <= i; --i) {
-        assert(stack_top(&s) == i);
+        assert((TO_INT) stack_top(&s) == i);
         stack_pop(&s);
     }
 

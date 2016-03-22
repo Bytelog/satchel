@@ -1,7 +1,14 @@
 #pragma once
 
+#define LIKELY(x)   __builtin_expect(!!(x), 1)
+#define UNLIKELY(x) __builtin_expect((x), 0)
+
+#define INLINE inline __attribute((always_inline))
+
 #define MIN(a,b) (((a)<(b))?(a):(b))
 #define MAX(a,b) (((a)>(b))?(a):(b))
+
+#include <stdio.h>
 
 static inline size_t
 next_power_of_2(size_t n)
@@ -12,6 +19,5 @@ next_power_of_2(size_t n)
     n |= n >> 4;
     n |= n >> 8;
     n |= n >> 16;
-    n++;
-    return n;
+    return n + 1;
 }
