@@ -1,18 +1,17 @@
 #pragma once
 
+#include "common.h"
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "common.h"
 
 typedef struct vec_t vec;
 
-struct vec_t
-{
-    void const **array;
-    size_t size;
-    size_t count;
+struct vec_t {
+  void const **array;
+  size_t size;
+  size_t count;
 };
 
 void const *vec_get(vec *v, size_t n);

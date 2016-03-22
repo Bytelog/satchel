@@ -1,16 +1,16 @@
 #pragma once
 
-#include "vec.h"
 #include "common.h"
+#include "vec.h"
 
 typedef struct queue_t queue;
 
 struct queue_t {
-    vec *v;
-    int *array;
-    int *front;
-    int *back;
-    size_t size;
+  vec *v;
+  int *array;
+  int *front;
+  int *back;
+  size_t size;
 };
 
 int queue_front(queue *q);
