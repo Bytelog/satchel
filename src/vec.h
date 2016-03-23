@@ -1,10 +1,5 @@
 #pragma once
-
-#include "common.h"
-#include <stdint.h>
-#include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
 typedef struct vec_t vec;
 
@@ -15,7 +10,6 @@ struct vec_t {
 };
 
 void const *vec_get(vec *v, size_t n);
-
 void vec_init(vec *v);
 void vec_push(vec *v, void const *);
 void vec_pop(vec *v);
