@@ -9,13 +9,8 @@ void vec_init(vec *v) {
 inline void const *vec_get(vec *v, size_t n) { return v->array[n]; }
 
 void vec_push(vec *v, void const *e) {
-  if (v->size == 0) {
-    v->size = 1;
-    v->array = malloc(sizeof(void *));
-  }
-
   if (v->size == v->count) {
-    v->size *= 2;
+    v->size = next_pow2(v->size);
     v->array = realloc(v->array, sizeof(void *) * v->size);
   }
 
