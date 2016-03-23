@@ -14,6 +14,11 @@ Some other notes:
 * `__builtin_expect` is not used for optimization
 * No care has been given to packing structs efficiently
 
+### Design Goals
+1. Overhead shall be kept to an absolute minimum
+2. Code must be obvious
+3. Optimize for typical hardware rather than theoretical performance
+
 ## Building
 To generate the object files, just type `make`. The results will be stored in the `target/` directory. The only thing you should need is libc and a compiler supporting C99. If you want to use something other than clang, you will need to edit the first line of the makefile.
 
