@@ -28,20 +28,21 @@ Quick reference documentation on each data structure. Each function has an impli
 Furthormore, the \_init() and \_free() functions for each data type have been omitted from this reference.
 
 ### Vector
-Files: vec.h, vec.o, common.h
+Files: vec.h, vec.c, common.h
 ```
 vec:
     array: void **
     size: size_t
     count: size_t
-
-Function
-    vec_get(pos) -> val
-    vec_push()
-    vec_pop()
-    vec_insert(pos, val)
-    vec_erase(pos, val)
-    vec_clear()
+```
+Prototype | Time Complexity | Space Complexity
+--- | :---: | :---:
+`vec_get(pos) -> val` | O(1) | O(1)
+`vec_push()` | O(1) | O(1)
+`vec_pop()` | O(1) | O(1)
+`vec_insert(pos, val)` | O(n) | O(1)
+`vec_erase(pos, val)` | O(n) | O(1)
+`vec_clear()` | O(1) | O(1)
 ```
 
 ### Stack
@@ -51,9 +52,10 @@ stack:
     array: void **
     size: size_t
     count: size_t
-
-Function
-    stack_top() -> val
-    stack_push(val)
-    stack_pop()
+```
+Prototype | Time Complexity | Space Complexity
+--- | :---: | :---:
+`stack_top() -> val` | O(1) | O(1)
+`stack_push(val)` | O(1) | O(1)
+`stack_pop()` | O(1) | O(1)
 ```
