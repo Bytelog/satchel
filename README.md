@@ -32,7 +32,6 @@ Files: vec.h, vec.c, common.h
 ```
 vec:
     array: void **
-    size: size_t
     count: size_t
 ```
 Prototype | Time Complexity | Space Complexity
@@ -43,14 +42,12 @@ Prototype | Time Complexity | Space Complexity
 `vec_insert(pos, val)` | O(n) | O(1)
 `vec_erase(pos, val)` | O(n) | O(1)
 `vec_clear()` | O(1) | O(1)
-```
 
 ### Stack
 Files: stack.h, common.h
 ```
 stack:
     array: void **
-    size: size_t
     count: size_t
 ```
 Prototype | Time Complexity | Space Complexity
@@ -58,4 +55,18 @@ Prototype | Time Complexity | Space Complexity
 `stack_top() -> val` | O(1) | O(1)
 `stack_push(val)` | O(1) | O(1)
 `stack_pop()` | O(1) | O(1)
+
+### Queue
+Files: queue.h, queue.c, common.h
 ```
+queue:
+    array: void **
+```
+Prototype | Time Complexity | Space Complexity
+--- | :---: | :---:
+`queue_front() -> val` | O(1) | O(1)
+`queue_length() -> num` | O(1) | O(1)
+`queue_push(val)` | O(1) | O(1)
+`queue_pop(val)` | O(1) | O(1)
+
+
