@@ -10,7 +10,7 @@ void vec_init(vec *v) {
 }
 
 static inline void vec_grow(vec *v) {
-  if (v->size == v->count) {
+  if (v->count == v->size) {
     v->size = next_pow2(v->size + 1);
     v->array = realloc(v->array, sizeof(void *) * v->size);
   }
