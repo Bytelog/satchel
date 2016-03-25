@@ -36,9 +36,9 @@ vec:
 Prototype | Time Complexity | Space Complexity
 --- | :---: | :---:
 `vec_get(pos) -> val` | O(1) | O(1)
-`vec_push()` | O(1) | O(1)
+`vec_push() -> bool` | O(1) | O(1)
 `vec_pop()` | O(1) | O(1)
-`vec_insert(pos, val)` | O(n) | O(1)
+`vec_insert(pos, val) -> bool` | O(n) | O(1)
 `vec_erase(pos, val)` | O(n) | O(1)
 `vec_clear()` | O(1) | O(1)
 
@@ -52,7 +52,7 @@ stack:
 Prototype | Time Complexity | Space Complexity
 --- | :---: | :---:
 `stack_top() -> val` | O(1) | O(1)
-`stack_push(val)` | O(1) | O(1)
+`stack_push(val) -> bool` | O(1) | O(1)
 `stack_pop()` | O(1) | O(1)
 
 ### Queue
@@ -65,7 +65,7 @@ Prototype | Time Complexity | Space Complexity
 --- | :---: | :---:
 `queue_front() -> val` | O(1) | O(1)
 `queue_length() -> num` | O(1) | O(1)
-`queue_push(val)` | O(1) | O(1)
+`queue_push(val) -> bool` | O(1) | O(1)
 `queue_pop(val)` | O(1) | O(1)
 
 
