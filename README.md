@@ -9,10 +9,9 @@ In some instances, time complexity has been sacrificed in favor of contiguous me
 Some other notes:
 * The data structures either utilize iterators or indices, but not both
 * Underlying memory is never zeroed, even when cleared
-* There is no bounds checking.
-* Failures of I/O functions such as `malloc` are unhandled (for now)
-* `__builtin_expect` is not used for optimization
-* No care has been given to packing structs efficiently
+* There is no bounds checking (caller is responsible)
+* Functions with allocation failures always return false
+* No compiler builtins are utilized
 
 ### Design Goals
 1. Overhead shall be kept to an absolute minimum
