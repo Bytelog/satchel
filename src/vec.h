@@ -1,5 +1,6 @@
 #pragma once
 #include <stdlib.h>
+#include <stdbool.h>
 
 typedef struct vec_t vec;
 
@@ -11,9 +12,9 @@ struct vec_t {
 
 void const *vec_get(vec *v, size_t n);
 void vec_init(vec *v);
-void vec_push(vec *v, void const *);
+bool vec_push(vec *v, void const *);
 void vec_pop(vec *v);
-void vec_insert(vec *v, size_t pos, void const *);
+bool vec_insert(vec *v, size_t pos, void const *);
 void vec_erase(vec *v, size_t pos);
 void vec_clear(vec *v);
 void vec_free(vec *v);

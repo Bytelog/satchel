@@ -18,20 +18,26 @@ static inline void vec_grow(vec *v) {
 
 void const *vec_get(vec *v, size_t n) { return v->array[n]; }
 
-void vec_push(vec *v, void const *e) {
+bool vec_push(vec *v, void const *e) {
   vec_grow(v);
+  if (!v->array)
+    return false;
   v->array[v->count] = e;
   v->count++;
+  return true;
 }
 
-void vec_pop(vec *v) { v->count = MAX(v->count - 1, 0); }
+void vec_pop(vec *v) { v->count--; }
 
-void vec_insert(vec *v, size_t pos, void const *val) {
-  vec_grow(v);
+bool vec_insert(vec *v, size_t pos, void const *val) {
+  vec_grow(v)
+  if (!v->array)
+    return false;
   memmove(&v->array[pos + 1], &v->array[pos],
           sizeof(void *) * (v->count - pos));
   v->array[pos] = val;
   v->count++;
+  return true;
 }
 
 void vec_erase(vec *v, size_t pos) {
