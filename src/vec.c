@@ -30,7 +30,7 @@ void vec_pop(vec *v) { v->count--; }
 
 bool vec_insert(vec *v, size_t pos, void const *val) {
   if (!vec_grow(v))
-    return false
+    return false;
   memmove(&v->array[pos + 1], &v->array[pos],
           sizeof(void *) * (v->count - pos));
   v->array[pos] = val;
