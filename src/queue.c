@@ -1,45 +1,35 @@
 #include "queue.h"
+#include <string.h>
 
-void *queue_front(queue *q) { return q->front; }
-//size_t queue_length(queue *q) {  }
+void const *queue_front(queue *q) { return q->array + q->front; }
 
 void queue_init(queue *q) {
   q->array = NULL;
-  q->front = NULL;
-  q->back = NULL;
   q->size = 0;
+  q->front = 0;
+  q->count = 0;
 }
 
-static inline void * queue_grow(queue *q) {
-  q->size = next_pow2(q->size + 1);
+static inline void *queue_grow(queue *q) {
+  q->size = MIN(next_pow2(q->size + 1), 2);
   q->array = realloc(q->array, sizeof(void *) * q->size);
   return q->array;
 }
 
-static inline void * queue_next(queue *q, void **it) {
-  if ((size_t) (it - q->array) == q->size)
-    return q->array;
-  return it + 1;
-}
-
-bool queue_push(queue *q, void *e) {
-  if (q->front == q->back) {
+bool queue_push(queue *q, void const *e) {
+  if (q->count == q->size) {
     if (!queue_grow(q))
       return false;
-    q->front = q->array;
-    q->back = q->array + q->size - 1;
+    memmove(&q->array[q->count], q->array, q->front);
   }
 
-  // Check for q->back + 1 = q->front. Means full
-  
-  // Otherwise, q->front++
-
-  *(q->back) = e;
+  q->count++;
+  q->array[(q->front + q->count - 1) % q->size] = e;
   return true;
 }
 
 void queue_pop(queue *q) {
-  q->front = queue_next(q, q->front);
+  q->count--;
 }
 
 void queue_free(queue *q) { free(q->array); }

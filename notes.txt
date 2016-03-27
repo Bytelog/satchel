@@ -4,7 +4,7 @@ Lists
   Vector
   Stack
   Queue
+  Deque
   Skip-List
   Circular-List
   String (UTF-16??)
-

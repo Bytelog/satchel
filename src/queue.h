@@ -6,15 +6,14 @@
 typedef struct queue_t queue;
 
 struct queue_t {
-  void **array;
-  void **front;
-  void **back;
+  void const **array;
   size_t size;
+  size_t front;
+  size_t count;
 };
 
-void *queue_front(queue *q);
-size_t queue_length(queue *q);
+void const *queue_front(queue *q);
 void queue_init(queue *q);
-bool queue_push(queue *q, void *e);
+bool queue_push(queue *q, void const *e);
 void queue_pop(queue *q);
 void queue_free(queue *q);
