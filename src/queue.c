@@ -1,7 +1,7 @@
 #include "queue.h"
 #include <string.h>
 
-void const *queue_front(queue *q) { return q->array + q->front; }
+void const *queue_front(queue *q) { return q->array[q->front]; }
 
 void queue_init(queue *q) {
   q->array = NULL;
@@ -11,15 +11,14 @@ void queue_init(queue *q) {
 }
 
 static inline void *queue_grow(queue *q) {
-  q->size = MIN(next_pow2(q->size + 1), 2);
+  q->size = MAX(next_pow2(q->size + 1), 2);
   q->array = realloc(q->array, sizeof(void *) * q->size);
   return q->array;
 }
 
 bool queue_push(queue *q, void const *e) {
   if (q->count == q->size) {
-    if (!queue_grow(q))
-      return false;
+    if (!queue_grow(q)) return false;
     memmove(&q->array[q->count], q->array, q->front);
   }
 
@@ -30,6 +29,7 @@ bool queue_push(queue *q, void const *e) {
 
 void queue_pop(queue *q) {
   q->count--;
+  q->front = (q->front + 1) % q->size;
 }
 
 void queue_free(queue *q) { free(q->array); }
