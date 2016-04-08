@@ -8,3 +8,6 @@ Lists
   Skip-List
   Circular-List
   String (UTF-16??)
+
+
+All data structures should have a shrink function if applicable
