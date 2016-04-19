@@ -7,6 +7,7 @@ The containers mostly try and mirror C++'s STL, including efficiency guarantees.
 In some instances, time complexity has been sacrificed in favor of contiguous memory, to make use of caching. On most modern machines this should provide higher performance.
 
 Some other notes:
+* I will be adding namespacing, once I've settled on a prefix
 * The data structures either utilize iterators or indices, but not both
 * Underlying memory is never zeroed, even when cleared
 * There is no bounds checking (caller is responsible)
