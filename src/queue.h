@@ -3,9 +3,9 @@
 #include <string.h>
 #include "common.h"
 
-typedef struct queue_t queue;
+typedef struct queue queue;
 
-struct queue_t {
+struct queue {
   void const **array;
   size_t size;
   size_t front;

@@ -4,9 +4,9 @@
 #include <string.h>
 #include "common.h"
 
-typedef struct vec_t vec;
+typedef struct vec vec;
 
-struct vec_t {
+struct vec {
   void const **array;
   size_t size;
   size_t count;

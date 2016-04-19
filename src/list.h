@@ -1,8 +1,14 @@
 #pragma once
-
+#include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
 #include "common.h"
+
+#ifndef MAX_ITEMS
+#define MAX_ITEMS 64
+#endif
+
+#define VACANCY_LIST_SIZE (MAX_ITEMS / sizeof(size_t)*CHAR_BIT
 
 typedef struct list_item_t list_item;
 typedef struct list_t list;
@@ -16,10 +22,10 @@ struct list_item_t {
 struct list_t {
   list_item *array;
   size_t size;
-  size_t vacancy;
+  size_t vacancy[];
 };
 
-void list_init(list *l) {
+void list_init(list *l, size_t max_items) {
   l->array = NULL;
   l->size = 0;
   l->vacancy = 0;

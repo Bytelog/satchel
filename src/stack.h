@@ -1,7 +1,7 @@
 #pragma once
 #include "vec.h"
 
-typedef struct vec_t stack;
+typedef struct vec stack;
 
 inline void const *stack_top(stack *s) { return vec_get(s, s->count - 1); }
 inline void stack_init(stack *s) { vec_init(s); }
