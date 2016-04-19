@@ -23,7 +23,7 @@ void vec_init(vec *v) {
 static inline void *vec_grow(vec *v) {
   if (v->count == v->size) {
     v->size = next_pow2(v->size + 1);
-    v->array = (const void **)realloc(v->array, sizeof(void *) * v->size);
+    v->array = realloc(v->array, sizeof(void *) * v->size);
   }
   return v->array;
 }
@@ -53,7 +53,4 @@ void vec_erase(vec *v, size_t pos) {
 
 void vec_clear(vec *v) { v->count = 0; }
 
-void vec_free(vec *v) {
-  free(v->array);
-  v->array = NULL;
-}
+void vec_free(vec *v) { free(v->array); }
