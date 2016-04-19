@@ -21,14 +21,14 @@ struct list_item_t {
 
 struct list_t {
   list_item *array;
+  size_t *vacancy;
   size_t size;
-  size_t vacancy[];
 };
 
 void list_init(list *l, size_t max_items) {
   l->array = NULL;
+  l->vacancy = NULL;
   l->size = 0;
-  l->vacancy = 0;
 }
 
 static inline void *list_grow(list *l) {
