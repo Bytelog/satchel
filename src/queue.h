@@ -23,7 +23,7 @@ void queue_init(queue *q) {
 
 static inline void *queue_grow(queue *q) {
   q->size = MAX(next_pow2(q->size + 1), 2);
-  q->array = realloc(q->array, sizeof(void *) * q->size);
+  q->array = (const void **)realloc(q->array, sizeof(void *) * q->size);
   return q->array;
 }
 
