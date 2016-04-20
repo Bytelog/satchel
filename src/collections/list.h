@@ -13,19 +13,25 @@ struct list_node {
 
 struct list {
   list_node *first;
+  list_node *last;
 };
 
+void *list_front(list *l) { return l->first->data; }
+void *list_back(list *l) { return l->last->data; }
 void *list_get(list_node *n) { return n->data; }
+size_t list_count(list *l) { return (l->last - l->first) + 1; }
 
-void list_init(list *l) { l->first = NULL; }
+bool list_init(list *l) {
+  if (!(l->first = malloc(sizeof(list_node))))
+    return false;
 
-list list_new() {
-  list l = {0};
-  l->first = malloc
-  return l;
+  l->last = l->first;
+  l->first->data = NULL;
+  l->first->next = NULL;
+  return true;
 }
 
-list_node *list_next(list_node *n) { return n->next; }
+list_node *list_node_next(list_node *n) { return n->next; }
 
 bool list_push_front(list *l, void *e) {
   list_node *tail;

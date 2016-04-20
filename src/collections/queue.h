@@ -20,11 +20,6 @@ void queue_init(queue *q) {
   q->count = 0;
 }
 
-queue queue_new() {
-  queue q = {0};
-  return q;
-}
-
 void *queue_grow(queue *q) {
   q->size = MAX(next_pow2(q->size + 1), 2);
   q->data = realloc(q->data, sizeof(void *) * q->size);
