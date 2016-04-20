@@ -3,14 +3,12 @@
 #include <string.h>
 #include "common.h"
 
-typedef struct queue queue;
-
-struct queue {
+typedef struct {
   void const **data;
   size_t size;
   size_t front;
   size_t count;
-};
+} queue;
 
 void const *queue_front(queue *q) { return q->data[q->front]; }
 

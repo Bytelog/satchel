@@ -4,13 +4,11 @@
 #include <string.h>
 #include "common.h"
 
-typedef struct vec vec;
-
-struct vec {
+typedef struct {
   void const **data;
   size_t size;
   size_t count;
-};
+} vec;
 
 void const *vec_get(vec *v, size_t n) { return v->data[n]; }
 
