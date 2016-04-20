@@ -5,7 +5,7 @@
 
 typedef struct list_node list_node;
 typedef struct list list;
-typedef struct list_it list_it;
+typedef struct list list_it;
 
 struct list_node {
   void *data;
@@ -13,23 +13,19 @@ struct list_node {
 };
 
 struct list {
-  list_node *first;
-};
-
-struct list_it {
   list_node *item;
 };
 
-void list_front(list *l, list_it *it) { it->item = l->first; }
+void list_front(list *l, list_it *it) { it = l; }
 void *list_get(list *l, list_it *it) { return it->item; }
 void list_advance(list *l, list_it *it) { it->item = it->item->next; }
 
 bool list_init(list *l) {
-  if (!(l->first = malloc(sizeof(list_node))))
+  if (!(l->item = malloc(sizeof(list_node))))
     return false;
 
-  l->first->data = NULL;
-  l->first->next = NULL;
+  l->item->data = NULL;
+  l->item->next = NULL;
   return true;
 }
 
@@ -58,20 +54,18 @@ bool list_push_front(list *l, void *e) {
     return false;
 
   tail->data = e;
-  tail->next = l->first;
-  l->first = tail;
+  tail->next = l->item;
+  l->item = tail;
   return true;
 }
 
 void list_pop_front(list *l) {
-  list_node *trash = l->first;
+  list_node *trash = l->item;
   free(trash);
 }
 
 void list_free(list *l) {
-  list_it it;
-  list_front(l, &it);
-  while(l->first->next)
-    list_erase_after(l, &it);
-  free(l->first);
+  while(l->item->next)
+    list_erase_after(l, l);
+  free(l->item);
 }
