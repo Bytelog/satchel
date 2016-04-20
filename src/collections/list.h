@@ -3,56 +3,68 @@
 #include <stdlib.h>
 #include "common.h"
 
-typedef struct forward_list_item forward_list_item;
-typedef struct forward_list forward_list;
-typedef struct forward_list_it forward_list_it;
+typedef struct list_node list_node;
+typedef struct list list;
 
-struct forward_list_item {
-  void const *e;
-  forward_list_item
+struct list_node {
+  void const *data;
+  list_node *next;
 };
 
-struct forward_list {
-  forward_list_item *array;
-  size_t *vacancy;
-  size_t size;
+struct list {
+  list_node *first;
 };
 
-void forward_list_init(forward_list *l, size_t max_items) {
-  l->array = NULL;
-  l->vacancy = NULL;
-  l->size = 0;
+void list_init(list *l) {
+  l->first = NULL;
 }
 
-static inline void *forward_list_grow(forward_list *l) {
-  l->size = next_pow2(l->size + 1);
-  // TODO: Broken
-  l->vacancy |= l->size | l->size - 1;
-  l->array = realloc(l->array, sizeof(forward_list_item) * l->size);
-  return l->array;
+list list_new() {
+  list l = {0};
+  return l;
 }
 
-forward_list_item const *forward_list_next(forward_list *l, forward_list_item *pos) {
-  return &l->array[pos->next];
+list_node *list_next(list_node *node) {
+  return node->next;
 }
 
-bool forward_list_insert(forward_list *l, forward_list_item *pos, void const *e) {
-  if (!l->vacancy && !forward_list_grow(l)) return false;
+bool list_push_front(list *l, void const *data) {
+  list_node *tail;
+  if (!(tail = malloc(sizeof(list_node))))
+    return false;
 
-  // TODO: Broken
-  size_t location = l->vacancy & -l->vacancy;
-  forward_list_item node = l->array[location];
-
-  if (pos)
-    node.next = pos - l->array;
-  else
-    node.next = 0;
-
-  node.e = e;
-
-  // TODO: Ensure working
-  l->vacancy &= ~location;
+  tail->data = data;
+  tail->next = l->first;
+  l->first = tail;
   return true;
 }
 
-void forward_list_free(forward_list *l) { free(l->array); }
+void list_pop_front(list *l) {
+  list_node *trash = l->first;
+  free(trash);
+}
+
+bool list_insert_after(list_node *node, void const *data) {
+  list_node *head;
+  if (!(head = malloc(sizeof(list_node))))
+    return false;
+
+  head->data = data;
+  head->next = node->next;
+  return true;
+}
+
+void list_erase_after(list_node *node) {
+  if (!node->next)
+    return;
+
+  list_node *trash = node->next;
+  node->next = node->next->next;
+  free(trash);
+}
+
+void list_free(list *l) {
+  while(l->first->next)
+    list_erase_after(l->first);
+  free(l->first);
+}
