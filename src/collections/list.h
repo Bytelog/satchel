@@ -18,7 +18,12 @@ struct list {
 
 void list_front(list *l, list_it *it) { it = l; }
 void *list_get(list *l, list_it *it) { return it->item; }
-void list_advance(list *l, list_it *it) { it->item = it->item->next; }
+void list_next(list *l, list_it *it) { it->item = it->item->next; }
+
+void list_next_wrap(list *l, list_it *it) {
+  it->item = it->item->next;
+  if (!it->item) it->item = l->item;
+}
 
 bool list_init(list *l) {
   if (!(l->item = malloc(sizeof(list_node))))
@@ -63,7 +68,7 @@ void list_pop_front(list *l) {
   list_node *trash = l->item;
   free(trash);
 }
-
+ 
 void list_free(list *l) {
   while(l->item->next)
     list_erase_after(l, l);
