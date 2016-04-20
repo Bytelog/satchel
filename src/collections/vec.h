@@ -18,6 +18,11 @@ void vec_init(vec *v) {
   v->count = 0;
 }
 
+vec vec_new() {
+  vec v = {0};
+  return v;
+}
+
 static inline void *vec_grow(vec *v) {
   if (v->count == v->size) {
     v->size = next_pow2(v->size + 1);
