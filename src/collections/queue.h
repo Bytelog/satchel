@@ -24,7 +24,7 @@ queue queue_new() {
   return q;
 }
 
-static inline void *queue_grow(queue *q) {
+void *queue_grow(queue *q) {
   q->size = MAX(next_pow2(q->size + 1), 2);
   q->data = realloc(q->data, sizeof(void *) * q->size);
   return q->data;

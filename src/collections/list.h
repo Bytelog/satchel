@@ -24,7 +24,7 @@ list list_new() {
   return l;
 }
 
-list_node *list_next(list_node *n) {
+list_node *list_next(list_node const *n) {
   return n->next;
 }
 

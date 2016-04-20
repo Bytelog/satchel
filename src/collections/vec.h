@@ -23,7 +23,7 @@ vec vec_new() {
   return v;
 }
 
-static inline void *vec_grow(vec *v) {
+void *vec_grow(vec *v) {
   if (v->count == v->size) {
     v->size = next_pow2(v->size + 1);
     v->data = realloc(v->data, sizeof(void *) * v->size);
