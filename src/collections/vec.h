@@ -39,11 +39,11 @@ bool vec_push(vec *v, void const *e) {
 
 void vec_pop(vec *v) { v->count--; }
 
-bool vec_insert(vec *v, size_t pos, void const *val) {
+bool vec_insert(vec *v, size_t pos, void const *e) {
   if (!vec_grow(v)) return false;
   memmove(&v->data[pos + 1], &v->data[pos],
           sizeof(void *) * (v->count - pos));
-  v->data[pos] = val;
+  v->data[pos] = e;
   v->count++;
   return true;
 }

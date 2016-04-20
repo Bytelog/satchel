@@ -24,16 +24,16 @@ list list_new() {
   return l;
 }
 
-list_node *list_next(list_node *node) {
-  return node->next;
+list_node *list_next(list_node *n) {
+  return n->next;
 }
 
-bool list_push_front(list *l, void const *data) {
+bool list_push_front(list *l, void const *e) {
   list_node *tail;
   if (!(tail = malloc(sizeof(list_node))))
     return false;
 
-  tail->data = data;
+  tail->data = e;
   tail->next = l->first;
   l->first = tail;
   return true;
@@ -44,22 +44,22 @@ void list_pop_front(list *l) {
   free(trash);
 }
 
-bool list_insert_after(list_node *node, void const *data) {
+bool list_insert_after(list_node *n, void const *e) {
   list_node *head;
   if (!(head = malloc(sizeof(list_node))))
     return false;
 
-  head->data = data;
-  head->next = node->next;
+  head->data = e;
+  head->next = n->next;
   return true;
 }
 
-void list_erase_after(list_node *node) {
-  if (!node->next)
+void list_erase_after(list_node *n) {
+  if (!n->next)
     return;
 
-  list_node *trash = node->next;
-  node->next = node->next->next;
+  list_node *trash = n->next;
+  n->next = n->next->next;
   free(trash);
 }
 
