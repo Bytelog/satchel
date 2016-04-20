@@ -1,7 +1,6 @@
 #pragma once
 #include <stdbool.h>
 #include <stdlib.h>
-#include "common.h"
 
 typedef struct list_node list_node;
 typedef struct list list;
