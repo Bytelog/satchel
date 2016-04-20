@@ -6,16 +6,16 @@
 typedef struct queue queue;
 
 struct queue {
-  void const **array;
+  void const **data;
   size_t size;
   size_t front;
   size_t count;
 };
 
-void const *queue_front(queue *q) { return q->array[q->front]; }
+void const *queue_front(queue *q) { return q->data[q->front]; }
 
 void queue_init(queue *q) {
-  q->array = NULL;
+  q->data = NULL;
   q->size = 0;
   q->front = 0;
   q->count = 0;
@@ -23,18 +23,18 @@ void queue_init(queue *q) {
 
 static inline void *queue_grow(queue *q) {
   q->size = MAX(next_pow2(q->size + 1), 2);
-  q->array = realloc(q->array, sizeof(void *) * q->size);
-  return q->array;
+  q->data = realloc(q->data, sizeof(void *) * q->size);
+  return q->data;
 }
 
 bool queue_push(queue *q, void const *e) {
   if (q->count == q->size) {
     if (!queue_grow(q)) return false;
-    memmove(&q->array[q->count], q->array, q->front);
+    memmove(&q->data[q->count], q->data, q->front);
   }
 
   q->count++;
-  q->array[(q->front + q->count - 1) % q->size] = e;
+  q->data[(q->front + q->count - 1) % q->size] = e;
   return true;
 }
 
@@ -43,4 +43,4 @@ void queue_pop(queue *q) {
   q->front = (q->front + 1) % q->size;
 }
 
-void queue_free(queue *q) { free(q->array); }
+void queue_free(queue *q) { free(q->data); }
