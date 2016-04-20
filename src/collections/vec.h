@@ -5,12 +5,13 @@
 #include "common.h"
 
 typedef struct {
-  void const **data;
+  void **data;
   size_t size;
   size_t count;
 } vec;
 
-void const *vec_get(vec *v, size_t n) { return v->data[n]; }
+void *vec_get(vec *v, size_t n) { return v->data[n]; }
+size_t vec_count(vec *v) { return v->count; }
 
 void vec_init(vec *v) {
   v->data = NULL;
@@ -31,7 +32,7 @@ void *vec_grow(vec *v) {
   return v->data;
 }
 
-bool vec_push(vec *v, void const *e) {
+bool vec_push(vec *v, void *e) {
   if (!vec_grow(v)) return false;
   v->data[v->count++] = e;
   return true;
@@ -39,7 +40,7 @@ bool vec_push(vec *v, void const *e) {
 
 void vec_pop(vec *v) { v->count--; }
 
-bool vec_insert(vec *v, size_t pos, void const *e) {
+bool vec_insert(vec *v, size_t pos, void *e) {
   if (!vec_grow(v)) return false;
   memmove(&v->data[pos + 1], &v->data[pos],
           sizeof(void *) * (v->count - pos));

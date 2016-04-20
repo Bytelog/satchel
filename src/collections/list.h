@@ -7,7 +7,7 @@ typedef struct list_node list_node;
 typedef struct list list;
 
 struct list_node {
-  void const *data;
+  void *data;
   list_node *next;
 };
 
@@ -15,20 +15,19 @@ struct list {
   list_node *first;
 };
 
-void list_init(list *l) {
-  l->first = NULL;
-}
+void *list_get(list_node *n) { return n->data; }
+
+void list_init(list *l) { l->first = NULL; }
 
 list list_new() {
   list l = {0};
+  l->first = malloc
   return l;
 }
 
-list_node *list_next(list_node const *n) {
-  return n->next;
-}
+list_node *list_next(list_node *n) { return n->next; }
 
-bool list_push_front(list *l, void const *e) {
+bool list_push_front(list *l, void *e) {
   list_node *tail;
   if (!(tail = malloc(sizeof(list_node))))
     return false;
@@ -44,7 +43,7 @@ void list_pop_front(list *l) {
   free(trash);
 }
 
-bool list_insert_after(list_node *n, void const *e) {
+bool list_insert_after(list_node *n, void *e) {
   list_node *head;
   if (!(head = malloc(sizeof(list_node))))
     return false;

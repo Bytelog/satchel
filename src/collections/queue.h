@@ -4,13 +4,14 @@
 #include "common.h"
 
 typedef struct {
-  void const **data;
+  void **data;
   size_t size;
   size_t front;
   size_t count;
 } queue;
 
-void const *queue_front(queue *q) { return q->data[q->front]; }
+void *queue_front(queue *q) { return q->data[q->front]; }
+size_t queue_count(queue *q) { return q->count; }
 
 void queue_init(queue *q) {
   q->data = NULL;
@@ -30,7 +31,7 @@ void *queue_grow(queue *q) {
   return q->data;
 }
 
-bool queue_push(queue *q, void const *e) {
+bool queue_push(queue *q, void *e) {
   if (q->count == q->size) {
     if (!queue_grow(q)) return false;
     memmove(&q->data[q->count], q->data, q->front);
