@@ -32,7 +32,7 @@ Furthormore, the \_init() and \_free() functions for each data type have been om
 Files: vec.h, common.h
 ```
 vec:
-    array: void **
+    data: void **
     count: size_t
 ```
 Prototype | Time Complexity | Space Complexity
@@ -46,10 +46,10 @@ Prototype | Time Complexity | Space Complexity
 `vec_clear()` | O(1) | O(1)
 
 ### Stack
-Files: stack.h, common.h
+Files: stack.h, vec.h, common.h
 ```
 stack:
-    array: void **
+    data: void **
     count: size_t
 ```
 Prototype | Time Complexity | Space Complexity
@@ -60,10 +60,10 @@ Prototype | Time Complexity | Space Complexity
 `stack_pop()` | O(1) | O(1)
 
 ### Queue
-Files: queue.h, queue.c, common.h
+Files: queue.h, common.h
 ```
 queue:
-    array: void **
+    data: void **
 ```
 Prototype | Time Complexity | Space Complexity
 --- | :---: | :---:
@@ -71,5 +71,30 @@ Prototype | Time Complexity | Space Complexity
 `queue_length() -> num` | O(1) | O(1)
 `queue_push(val) -> bool` | O(1) | O(1)
 `queue_pop(val)` | O(1) | O(1)
+
+### List
+Files: list.h, common.h
+```
+list:
+    item: list_node *
+list_node:
+    data: void *
+    next: list_node *
+list_it:
+    item: list_node *
+```
+Prototype | Time Complexity | Space Complexity
+--- | :---: | :---:
+`list_front(&it)` | O(1) | O(1)
+`list_get(&it)` | O(1) | O(1)
+`list_next(&it)` | O(1) | O(1)
+`list_next_wrap(&it)` | O(1) | O(1)
+`list_init(&it) -> bool` | O(1) | O(1)
+`list_insert_after(&it, val) -> bool` | O(1) | O(1)
+`list_erase_after(&it)` | O(1) | O(1)
+`list_push_front(val) -> bool` | O(1) | O(1)
+`list_pop_front()` | O(1) | O(1)
+`list_free()` | O(n) | O(1)
+
 
 

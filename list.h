@@ -15,6 +15,17 @@ struct list {
   list_node *item;
 };
 
+void list_front(list *, list_it *);
+void *list_get(list *, list_it *);
+void list_next(list *, list_it *);
+void list_next_wrap(list *, list_it *);
+bool list_init(list *);
+bool list_insert_after(list *, list_it *, void *);
+void list_erase_after(list *, list_it *);
+bool list_push_front(list *, void *);
+void list_pop_front(list *);
+void list_free(list *);
+
 void list_front(list *l, list_it *it) { it->item = l->item; }
 void *list_get(list *l, list_it *it) { return it->item; }
 void list_next(list *l, list_it *it) { it->item = it->item->next; }
