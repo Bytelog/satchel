@@ -1,0 +1,15 @@
+language: c
+
+script:
+  - cd test
+  - make
+
+matrix:
+  include:
+    - os: linux
+      compiler: clang
+    - os: linux
+      compiler: gcc
+      env: CFLAGS='-std=c99 -pedantic -Wall -Wextra -O3'
+    - os: osx
+      compiler: clang

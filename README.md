@@ -1,4 +1,6 @@
 # Data Structures
+[![Build Status](https://travis-ci.org/dallbee/satchel.svg?branch=master)](https://travis-ci.org/dallbee/satchel)
+
 Here lies a collection of data structures which I have implemented for learning purposes. Although I strive for efficient and correct implementations, I do not recommend using them in code of any importance. Instead, I refer you to [klib](https://github.com/attractivechaos/klib).
 
 ## Methodology
