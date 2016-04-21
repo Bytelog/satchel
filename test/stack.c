@@ -5,7 +5,7 @@
 
 #define FROM_UINT void *)(uintptr_t
 #define TO_UINT size_t)(uintptr_t const *
-#define STRESS_VALUE UINT_MAX
+#define STRESS_VALUE USHRT_MAX
 
 int main() {
   stack s;

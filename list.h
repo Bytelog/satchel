@@ -15,7 +15,7 @@ struct list {
   list_node *item;
 };
 
-void list_front(list *l, list_it *it) { it = l; }
+void list_front(list *l, list_it *it) { it->item = l->item; }
 void *list_get(list *l, list_it *it) { return it->item; }
 void list_next(list *l, list_it *it) { it->item = it->item->next; }
 
