@@ -2,9 +2,7 @@
 Here lies a collection of data structures which I have implemented for learning purposes. Although I strive for efficient and correct implementations, I do not recommend using them in code of any importance. Instead, I refer you to [klib](https://github.com/attractivechaos/klib).
 
 ## Methodology
-The containers mostly try and mirror C++'s STL, including efficiency guarantees. They are typed as (void \*) to allow for generic usage. This comes with a small performance penalty. This approach has been chosen because it yields the cleanest and most easily understood code.
-
-In some instances, time complexity has been sacrificed in favor of contiguous memory, to make use of caching. On most modern machines this should provide higher performance.
+The containers mostly try and mirror C++'s STL, including efficiency guarantees. They are typed as (void \*) to allow for generic usage. This comes with a small performance penalty.
 
 Some other notes:
 * I will be adding namespacing, once I've settled on a prefix
@@ -20,9 +18,10 @@ Some other notes:
 3. Optimize for typical hardware rather than theoretical performance
 
 ## Building
-To generate the object files, just type `make`. The results will be stored in the `target/` directory. The only thing you should need is libc and a compiler supporting C99. If you want to use something other than clang, you will need to edit the first line of the makefile.
+Satchel is meant to be a grab-bag of data structures. Just add the .h files you want to use to your project and you're good to go.
 
 ## API
+**TO BE REPLACED WITH DOCS FROM READTHEDOCS.ORG**
 Quick reference documentation on each data structure. Each function has an implicit reference to it's own structure which has been omitted. For example, vec\_clear() should really be vec\_clear(vec \*v).
 
 Furthormore, the \_init() and \_free() functions for each data type have been omitted from this reference.
