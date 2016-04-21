@@ -1,4 +1,3 @@
-#include "common.h"
 #include "queue.h"
 #include <assert.h>
 #include <stdio.h>
@@ -16,7 +15,6 @@ int main(void) {
     }
     
     for (int i = 0; i < 1000; ++i) {
-        printf("%i %i\n", i, (TO_INT) queue_front(&q));
         assert((TO_INT) queue_front(&q) == i);
         queue_pop(&q);
     }

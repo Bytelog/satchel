@@ -1,35 +1,59 @@
 #include "vec.h"
 #include <assert.h>
+#include <limits.h>
 #include <stdint.h>
 
-#define FROM_INT void *)(intptr_t
-#define TO_INT int)(intptr_t const *
+#define FROM_UINT void *)(uintptr_t
+#define TO_UINT size_t)(uintptr_t const *
+#define STRESS_VALUE USHRT_MAX
 
 int main(void) {
+  
+  // Basic usage tests
   vec v;
   vec_init(&v);
-  vec_push(&v, (FROM_INT)5);
-  assert((TO_INT)vec_get(&v, 0) == 5);
+  assert(vec_count(&v) == 0);
 
-  vec_insert(&v, 0, (FROM_INT)0);
-  assert((TO_INT)vec_get(&v, 0) == 0);
+  vec_push(&v, (FROM_UINT) 10);
+  assert((TO_UINT) vec_get(&v, 0) == 10);
+  assert(vec_count(&v) == 1);
+
+  vec_insert(&v, 0, (FROM_UINT) 5);
+  assert((TO_UINT) vec_get(&v, 0) == 5);
+  assert((TO_UINT) vec_get(&v, 1) == 10);
+  assert(vec_count(&v) == 2);
+
+  vec_erase(&v, 1);
+  assert((TO_UINT) vec_get(&v, 0) == 5);
+  assert(vec_count(&v) == 1);
 
   vec_pop(&v);
-  vec_push(&v, (FROM_INT)1);
-  assert((TO_INT)vec_get(&v, 1) == 1);
+  assert(vec_count(&v) == 0);
 
-  vec_push(&v, (FROM_INT)2);
-  vec_push(&v, (FROM_INT)3);
-  vec_push(&v, (FROM_INT)4);
-  vec_push(&v, (FROM_INT)4);
-  vec_erase(&v, 4);
+  vec_push(&v, (FROM_UINT) 15);
+  vec_push(&v, (FROM_UINT) 15);
+  vec_push(&v, (FROM_UINT) 15);
+  vec_clear(&v);
+  assert(vec_count(&v) == 0);
 
-  assert(v.size == 8);
-  assert(v.count == 5);
+  vec_free(&v);
 
-  for (size_t i = 0; i < v.count; ++i) {
-    assert((TO_INT)vec_get(&v, i) == (int)i);
-  }
+  // Stress testing
+  vec_init(&v);
+  for (size_t i = 0; i < STRESS_VALUE; ++i)
+    vec_push(&v, (FROM_UINT) i);
 
+  for (size_t i = 0; i < STRESS_VALUE; ++i)
+    assert((TO_UINT) vec_get(&v, i) == i);
+
+  for (size_t i = 0; i < vec_count(&v); i += 1)
+    vec_erase(&v, i);
+
+  for (size_t i = 0; i < STRESS_VALUE; i += 2)
+    vec_insert(&v, i, (FROM_UINT) i);
+
+  for (size_t i = 0; i < STRESS_VALUE; ++i)
+    assert((TO_UINT) vec_get(&v, i) == i);
+  
   vec_free(&v);
 }

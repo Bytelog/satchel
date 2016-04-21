@@ -10,6 +10,13 @@ typedef struct {
   size_t count;
 } queue;
 
+void *queue_front(queue *);
+size_t queue_count(queue *);
+void queue_init(queue *);
+bool queue_push(queue *, void *);
+void queue_pop(queue *);
+void queue_free(queue *);
+
 void *queue_front(queue *q) { return q->data[q->front]; }
 size_t queue_count(queue *q) { return q->count; }
 
@@ -20,7 +27,7 @@ void queue_init(queue *q) {
   q->count = 0;
 }
 
-void *queue_grow(queue *q) {
+static void *queue_grow(queue *q) {
   q->size = MAX(next_pow2(q->size + 1), 2);
   q->data = realloc(q->data, sizeof(void *) * q->size);
   return q->data;

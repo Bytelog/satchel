@@ -4,11 +4,23 @@
 #include <string.h>
 #include "common.h"
 
-typedef struct {
+typedef struct vec vec;
+
+struct vec {
   void **data;
   size_t size;
   size_t count;
-} vec;
+};
+
+void *vec_get(vec *, size_t);
+size_t vec_count(vec *);
+void vec_init(vec *);
+bool vec_push(vec *, void *);
+void vec_pop(vec *);
+bool vec_insert(vec *, size_t, void *);
+void vec_erase(vec *, size_t);
+void vec_clear(vec *);
+void vec_free(vec *);
 
 void *vec_get(vec *v, size_t n) { return v->data[n]; }
 size_t vec_count(vec *v) { return v->count; }
@@ -19,7 +31,7 @@ void vec_init(vec *v) {
   v->count = 0;
 }
 
-void *vec_grow(vec *v) {
+static void *vec_grow(vec *v) {
   if (v->count == v->size) {
     v->size = next_pow2(v->size + 1);
     v->data = realloc(v->data, sizeof(void *) * v->size);
