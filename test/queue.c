@@ -1,6 +1,6 @@
 #include "queue.h"
 #include <assert.h>
-#include <stdio.h>
+#include <stdint.h>
 #include <stdlib.h>
 
 #define FROM_INT void *)(intptr_t
