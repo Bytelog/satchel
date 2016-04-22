@@ -78,7 +78,7 @@ void list_pop_front(list *l) {
   list_node *trash = l->item;
   free(trash);
 }
- 
+
 void list_free(list *l) {
   while(l->item->next)
     list_erase_after(l, l);

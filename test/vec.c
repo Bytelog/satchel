@@ -7,6 +7,9 @@
 #define TO_UINT size_t)(uintptr_t const *
 #define STRESS_VALUE USHRT_MAX
 
+#include <time.h>
+#include <stdio.h>
+
 int main(void) {
   
   // Basic usage tests
