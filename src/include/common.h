@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 // Performance macros
 #define ALWAYS_INLINE inline __attribute__((always_inline))
@@ -26,14 +27,12 @@ static inline size_t next_pow2(size_t n) {
     return n + 1;
 }
 
-
-
 // Benchmarking functions
-clock_t watch_clock;
-inline void watch_start() {
+static clock_t watch_clock;
+static inline void watch_start() {
     watch_clock = clock();
 }
 
-inline f64 watch_peek() {
-    return ((f64)(clock() - watch_clock) / CLOCKS_PER_SEC);
+static inline double watch_peek() {
+    return ((double)(clock() - watch_clock) / CLOCKS_PER_SEC);
 }
